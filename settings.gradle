@@ -1,0 +1,49 @@
+pluginManagement {
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "Android14_Launcher3"
+include ':IconLoader'
+project(':IconLoader').projectDir = new File(rootDir, 'frameworks_libs_systemui/iconloaderlib')
+include ':animationlib'
+project(':animationlib').projectDir = new File(rootDir, 'frameworks_libs_systemui/animationlib')
+include ':ViewCapture'
+project(':ViewCapture').projectDir = new File(rootDir, 'frameworks_libs_systemui/viewcapturelib')
+
+include ':systemUiPlugin'
+project(':systemUiPlugin').projectDir = new File(rootDir, 'frameworks_systemui_libs/plugin')
+include ':systemUiPluginCore'
+project(':systemUiPluginCore').projectDir = new File(rootDir, 'frameworks_systemui_libs/plugin_core')
+include ':systemUiLog'
+project(':systemUiLog').projectDir = new File(rootDir, 'frameworks_systemui_libs/log')
+include ':systemUiAnim'
+project(':systemUiAnim').projectDir = new File(rootDir, 'frameworks_systemui_libs/animation')
+include ':systemUiCommon'
+project(':systemUiCommon').projectDir = new File(rootDir, 'frameworks_systemui_libs/common')
+include ':systemUiShared'
+project(':systemUiShared').projectDir = new File(rootDir, 'frameworks_systemui_libs/shared')
+include ':systemUiUnFold'
+project(':systemUiUnFold').projectDir = new File(rootDir, 'frameworks_systemui_libs/unfold')
+
+
+/*
+include ':SharedLibWrapper'
+project(':SharedLibWrapper').projectDir = new File(rootDir, 'SharedLibWrapper')*/
+include ':hidden-api'

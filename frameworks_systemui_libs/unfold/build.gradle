@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
+}
+
+android {
+    namespace "com.android.systemui.unfold"
+    compileSdk 35
+    defaultConfig {
+        minSdk 26
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    lint {
+        abortOnError true
+        checkReleaseBuilds false
+    }
+    buildFeatures {
+        aidl true
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+        }
+    }
+    ksp {
+        arg("dagger.hilt.disableModulesHaveInstallInCheck", "true")
+    }
+}
+
+addFrameworkJar('framework-14.jar')
+compileOnlyCommonJars()
+dependencies {
+    implementation "com.google.dagger:hilt-android:2.52"
+    ksp "com.google.dagger:hilt-compiler:2.52"
+
+    implementation("androidx.dynamicanimation:dynamicanimation:1.1.0")
+    implementation "androidx.concurrent:concurrent-futures:1.2.0"
+    implementation "androidx.lifecycle:lifecycle-common:2.8.6"
+
+}
+

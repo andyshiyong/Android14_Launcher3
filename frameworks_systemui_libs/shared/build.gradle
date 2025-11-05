@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace "com.android.systemui.shared"
+    compileSdk 35
+    defaultConfig {
+        minSdk 26
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildFeatures {
+        aidl true
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            res.srcDirs = ['res']
+            java.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+        }
+    }
+}
+
+addFrameworkJar('framework-14.jar')
+compileOnlyCommonJars()
+dependencies {
+
+    compileOnly project(':hidden-api')
+    compileOnly project(':systemUiUnFold')
+    compileOnly project(':systemUiPlugin')
+    compileOnly project(':systemUiPluginCore')
+    implementation 'com.google.dagger:hilt-android:2.52'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.52'
+
+    implementation "androidx.concurrent:concurrent-futures:1.2.0"
+}
